@@ -12,7 +12,10 @@ a:visited { color: #209781; }
 a:active  { color: #209781; }
 a:hover   { color: #E9B64A; }
 
+h1 {
+	text-align: center;
+}
 
-
-
-
+p {
+	text-align: center;
+}
