@@ -87,7 +87,7 @@ function hide2Cards(nr1, nr2) {
 
   pairsLeft--;
   if(pairsLeft == 0) {
-    $('.board').html('<h1>You win!<br>Done in '+turnCounter+' turns</h1><br><br><button>Play again!</button>');
+    $('.board').html('<h1>You win!<br>Done in '+turnCounter+' turns</h1><br><br><div class="reset" onclick="location.reload()">Play again?</div>');
   }
 
   lock = false;

@@ -68,3 +68,13 @@ p {
 	letter-spacing: 3px;
 	margin-top: 5px;
 }
+
+.reset {
+	font-size: 52px;
+	
+}
+
+.reset:hover {
+	color: #E9B64A;
+	cursor: pointer;
+}
