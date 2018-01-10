@@ -36,12 +36,16 @@ c1.addEventListener("click", function(){revealCard(nr);}); */
 
 var oneVisible = false;
 var turnCounter = 0;
-var visibleNr
+var visibleNr;
+var lock = false;
+var pairsLeft = 6;
 
 function revealCard(nr){
    var opacityValue = $('#c'+nr).css('opacity');
 
-   if (opacityValue != 0) {
+   if (opacityValue != 0 && lock == false) 
+   {
+      lock = true;
         //alert(nr);
 
       var image = "url(img/" + cards[nr] + ")";
@@ -55,18 +59,19 @@ function revealCard(nr){
    
        oneVisible = true;
        visibleNr = nr;
+       lock = false;
       }
       else {
        //second card
    
        if(cards[visibleNr] == cards[nr]){
          //alert("pair");
-         setTimeout(function() { hide2Cards(visibleNr, nr), 800 })
+         setTimeout(function() { hide2Cards(visibleNr, nr)}, 750)
        }
        else {
          //alert("missed");
 
-         setTimeout(function() { restore2Cards(visibleNr, nr), 800 })
+         setTimeout(function() { restore2Cards(visibleNr, nr)}, 1000)
        }
    
        turnCounter++;
@@ -79,6 +84,13 @@ function revealCard(nr){
 function hide2Cards(nr1, nr2) {
   $('#c'+nr1).css('opacity', '0');
   $('#c'+nr2).css('opacity', '0');
+
+  pairsLeft--;
+  if(pairsLeft == 0) {
+    $('.board').html('<h1>You win!<br>Done in '+turnCounter+' turns</h1>');
+  }
+
+  lock = false;
 }
 
 function restore2Cards(nr1, nr2) {
@@ -89,4 +101,6 @@ function restore2Cards(nr1, nr2) {
   $('#c'+nr2).css('background-image', 'url(img/karta.png)');
   $('#c'+nr2).addClass('card');
   $('#c'+nr2).removeClass('cardA');
+  
+  lock = false;
 }
